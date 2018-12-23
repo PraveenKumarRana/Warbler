@@ -23,9 +23,10 @@ class AuthForm extends Component{
         console.log("Printing from handleSubmit.");
         console.log("Auth type : " + authType);
         this.props.onAuth(authType, this.state).then(() => {
-            console.log(authType);
-            console.log(this.state);
-            console.log("LOGGED IN!");
+            // the below line helps us to redirect to the homepage.
+            this.props.history.push("/");
+        }). catch(() => {
+            return;
         });
     };
 

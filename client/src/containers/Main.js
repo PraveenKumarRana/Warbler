@@ -7,11 +7,12 @@ import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 
 const Main = props => {
-    const {authUser, errors, removeError} = props;
+    const {authUser, errors, removeError, currentUser} = props;
+    // currentUser and errors props are comming from the redux state.
     return(
         <div className="container">
             <Switch>
-                <Route exact path="/" render={props => <Homepage {...props}/>}/>
+                <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
                 <Route exact path="/signin" render={props => {
                     return(
                         <AuthForm removeError={removeError} errors={errors} onAuth={authUser} buttonText="Log in" heading="Welcome Back." {...props}></AuthForm>
