@@ -1,4 +1,4 @@
-import {apiCall} from '../../services/api';
+import {apiCall, setTokenHeader} from '../../services/api';
 import { SET_CURRENT_USER } from "../actionTypes";
 import { addError, removeError } from './errors';
 
@@ -9,9 +9,15 @@ export function setCurrentUser(user){
     }
 }
 
+export function setAuthorizationToken(token){
+    setTokenHeader(token);
+}
+
 export function logout(){
     return dispatch => {
         localStorage.clear();
+        // Now when the user will be logging out then we will call the setAuthorizationToken with the false parameter so that token will be cleaned from all future request.
+        setAuthorizationToken(false);
         dispatch(setCurrentUser({}));
     };
 }
@@ -23,6 +29,8 @@ export function authUser(type , userData){
             return apiCall("post", `/api/auth/${type}`, userData).then(
                 ({token, ...user}) => {
                     localStorage.setItem("jwtToken", token);
+                    // Now when the user is loggedIn then we will be calling the setAuthorizationToken with the token as parameter.
+                    setAuthorizationToken(token);
                     dispatch(setCurrentUser(user));
                     // Now since here we will not get any error so we need to remove any of the previous error.
                     dispatch(removeError());

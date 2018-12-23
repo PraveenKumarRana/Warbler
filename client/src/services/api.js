@@ -1,19 +1,20 @@
 import axios from  'axios';
 
-// export function setTokenHeader(token) {
-//     if(token) {
-//         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-//     } else {
-//         delete axios.defaults.headers.common["Authorization"];
-//     }
-// }
+// this setTokenHeader(token) will add this token with Bearer to all the future call after the person is logged in and when user will be logged out then it will be removing the Bearer part.
+export function setTokenHeader(token) {
+    if(token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+        delete axios.defaults.headers.common["Authorization"];
+    }
+}
 
-// /**
-//  * A wrapper around axios API call that formats errors, etc
-//  * @param {string} method the http verb that you want to use.
-//  * @param {string} path the route path / endpoint
-//  * @param {object} data (optional) data in JSON form for post requests
-// */
+/**
+ * A wrapper around axios API call that formats errors, etc
+ * @param {string} method the http verb that you want to use.
+ * @param {string} path the route path / endpoint
+ * @param {object} data (optional) data in JSON form for post requests
+*/
 
 export function apiCall(method, path, data){
     return new Promise((resolve, reject) => {
