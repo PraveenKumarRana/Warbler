@@ -20,7 +20,11 @@ class AuthForm extends Component{
     handleSubmit = e => {
         e.preventDefault();
         const authType = this.props.signUp ? "signup" : "signin";
+        console.log("Printing from handleSubmit.");
+        console.log("Auth type : " + authType);
         this.props.onAuth(authType, this.state).then(() => {
+            console.log(authType);
+            console.log(this.state);
             console.log("LOGGED IN!");
         });
     };
@@ -28,13 +32,22 @@ class AuthForm extends Component{
 
     render(){
         const {email, username, password, profileImageUrl} = this.state;
-        const {heading, buttonText, signUp} = this.props;
+        const {heading, buttonText, signUp, errors, history, removeError} = this.props;
+
+        // This will listen for any change in the url and if it listens that url is changed it will run the remove error function.
+        history.listen(() => {
+            removeError();
+        });
+
         return(
             <div>
                 <div className="row justify-content-md-center text-center">
                     <div className="col-md-6">
                         <form onSubmit={this.handleSubmit}>
                             <h2>{heading}</h2>
+                            {errors.message!== null && (
+                                <div className="alert alert-danger"> {errors.message} </div>
+                            )}
                             <label htmlFor="email">Email: </label>
                             <input 
                                 className="form-control" 

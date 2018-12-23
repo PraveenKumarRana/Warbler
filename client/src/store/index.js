@@ -6,7 +6,7 @@ export function configureStore(){
     const store = createStore(
         rootReducers,
         compose(applyMiddleware(thunk),
-        window.devToolsExtension() ? window.devToolsExtension() : f => f)
+        window.devToolsExtension ? window.devToolsExtension() : f => f)
     );
     return store;
 }
