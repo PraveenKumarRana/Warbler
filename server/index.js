@@ -22,6 +22,7 @@ app.use("/api/messages", loginRequired, async function(req, res, next){
                 username: true,
                 profileImageUrl: true
             });
+            console.log(message);
         return res.status(200).json(message);
     } catch(err){
         next(err);

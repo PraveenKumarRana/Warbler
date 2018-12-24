@@ -13,9 +13,9 @@ if(localStorage.jwtToken){
   setAuthorizationToken(localStorage.jwtToken);
   // prevent someone from manually tampering with the jwtToken in localStorage.
   try{
-    store(dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken))));
+    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
   } catch(err) {
-    store(dispatch(setCurrentUser({})));
+    store.dispatch(setCurrentUser({}));
   }
 }
 

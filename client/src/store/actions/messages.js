@@ -10,15 +10,49 @@ export const loadMessages = messages => ({
     messages
 });
 
+// function which will dispatch the action for the removal of the message.
+export const remove = id => ({
+    type: REMOVE_MESSAGE,
+    id
+});
+
+// Now we will be making apiCall for the deletion of the message.
+export const removeMessage = (user_id, message_id) => {
+    return dispatch => {
+        return apiCall("delete", `/api/users/${user_id}/messages/${message_id}`)
+        .then( () => {
+            dispatch(remove(message_id));
+        })
+        .catch( err => {
+            dispatch(addError(err.message));
+        })
+    };
+};
+
 // Now we will be making apiCall to get all the messages from the database.
 
 export const fetchMessages = () => {
     return dispatch => {
-        return apiCall("GET", "/api/messages")
-        .then(res => dispatch(loadMessages(res)))
-        .catch(err => dispatch(addError(err.messages))
-        );
+      return apiCall("get", "/api/messages")
+        .then(res => {
+          dispatch(loadMessages(res));
+        })
+        .catch(err => {
+          dispatch(addError(err.message));
+        });
     };
 };
 
 // Now we will be making the messages.js reducers to handle this fetchMessages value.
+
+// making new message request
+
+export const postNewMessage = text => (dispatch , getState ) => {
+    let { currentUser } = getState();
+    const id = currentUser.user.id;
+    return apiCall("post", `/api/users/${id}/messages`, { text })
+    .then(res => {})
+    .catch(err => {
+        dispatch(addError(err.message))
+    });
+}
