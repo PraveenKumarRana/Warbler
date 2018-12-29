@@ -1,31 +1,21 @@
-import axios from  'axios';
+import axios from "axios";
 
-// this setTokenHeader(token) will add this token with Bearer to all the future call after the person is logged in and when user will be logged out then it will be removing the Bearer part.
 export function setTokenHeader(token) {
-    if(token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    } else {
-        delete axios.defaults.headers.common["Authorization"];
-    }
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  } else {
+    delete axios.defaults.headers.common["Authorization"];
+  }
 }
 
-/**
- * A wrapper around axios API call that formats errors, etc
- * @param {string} method the http verb that you want to use.
- * @param {string} path the route path / endpoint
- * @param {object} data (optional) data in JSON form for post requests
-*/
-
-export function apiCall(method, path, data){
-    return new Promise((resolve, reject) => {
-        return axios[method](path, data)
-        .then(res => {
-            return resolve(res.data);
-        })
-        .catch(err => {
-            return reject(err.response.data.error);
-        });
-    });
+export function apiCall(method, path, data) {
+  return new Promise((resolve, reject) => {
+    return axios[method.toLowerCase()](path, data)
+      .then(res => {
+        return resolve(res.data);
+      })
+      .catch(err => {
+        return reject(err.response.data.error);
+      });
+  });
 }
-
-// axios[method] returns the function so in this case we are quickly invoking the function to get the data from it by passing the parameter (path, data) and then using .then and .catch we are using it to get the json data/ json error.
