@@ -98,6 +98,7 @@ class AuthForm extends Component {
                 </div>
               )}
               <button
+                style={{marginTop: '30px'}}
                 type="submit"
                 className="btn btn-primary btn-block btn-lg"
               >
