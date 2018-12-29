@@ -1,14 +1,16 @@
-body{
+body {
   background-color: #e6ecf0;
 }
 
 /* Nav */
+
 .navbar {
   margin-bottom: 1rem;
 }
 
 .navbar a {
   font-weight: bold;
+  color: white;
 }
 
 .navbar a:hover {
@@ -31,26 +33,26 @@ ul.nav.navbar-nav li {
 
 .onboarding > .navbar {
   background-image: url("./images/nav-bg.png");
-  background-size: 100%  100%;
+  background-size: 100% 100%;
 }
 
-.home-hero{
-  width: 100%;
+.home-hero {
+  width: 100vw;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
-  z-index: -1;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  z-index: -1;
   background-image: url("./images/signed-out-home.jpg");
   text-align: center;
   padding: 1rem;
   background-position: center center;
   background-size: cover;
-  color: white;
+  color: #fff;
   text-shadow: 0 0 8px #66757f;
 }
 
@@ -60,26 +62,26 @@ ul.nav.navbar-nav li {
   padding: 7px 20px 12px;
 }
 
-#messages:not(.no-hover) .list-group-item:hover{
+#messages:not(.no-hover) .list-group-item:hover {
   background-color: #e6ecf0;
 }
 
-.timeline-image{
+.timeline-image {
   border-radius: 50px;
   height: 48px;
   width: 48px;
   margin: 2px 30px 10px 10px;
 }
 
-.btn:hover{
+.btn:hover {
   cursor: pointer;
 }
 
 a.btn.btn-danger,
-a.btn.btn-danger:hover{
+a.btn.btn-danger:hover {
   color: white;
 }
 
-.navbar-header{
+.navbar-header {
   margin: 0 auto;
 }

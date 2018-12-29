@@ -1,18 +1,19 @@
-import {SET_CURRENT_USER} from '../actionTypes';
+import { SET_CURRENT_USER } from "../actionTypes";
 
 const DEFAULT_STATE = {
-    isAuthenticated: false, // the default value of the user.
-    user:{} // This will have the user's data when someone is logged in else it will be empty.
-}
+  isAuthenticated: false, // hopefully be true, when logged in
+  user: {} // all the user info when logged in
+};
 
-export default (state=DEFAULT_STATE, action) => {
-    switch(action.type){
-        case SET_CURRENT_USER:
-            return{
-                isAuthenticated : !!Object.keys(action.user).length > 0,
-                user: action.user
-            };
-        default:
-            return state;
-    }
-}
+export default (state = DEFAULT_STATE, action) => {
+  switch (action.type) {
+    case SET_CURRENT_USER:
+      return {
+        // turn empty object into false or if there are keys, true
+        isAuthenticated: !!Object.keys(action.user).length,
+        user: action.user
+      };
+    default:
+      return state;
+  }
+};
