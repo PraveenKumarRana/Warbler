@@ -12,5 +12,5 @@
 - Public message area. Your message will be public here though only you can delete it.
 ![message-page](demoSnapshots/message.png)
 
-Hope You will Enjoy This Project.  
-Happy Coding.
+**Hope You will Enjoy This Project.**  
+_Happy Coding._
